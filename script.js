@@ -10,7 +10,7 @@ _$.observeMutations(document.documentElement, () => {
 
 if ((new URLSearchParams(window.location.search).get("q") || "").startsWith("!")) {
 	console.log("Fetching first search result to quickly redirect to it.")
-	_$.getHTML(`https://cors.pixl8.dev/www.google.com/search?q=${escape((new URLSearchParams(window.location.search)).get("q").replace(/^!/, ""))}&btnI=Im+Feeling+Lucky`, () => {}).then(html => {
+	_$.getHTML(`https://cors.explosionscratc.repl.co/www.google.com/search?q=${escape((new URLSearchParams(window.location.search)).get("q").replace(/^!/, ""))}&btnI=Im+Feeling+Lucky`, () => {}).then(html => {
 		console.log("Quick-redirecting to 1st search result")
 		window.location.href = html.querySelector("a").href;
 	});
@@ -51,7 +51,7 @@ function run() {
 	console.log("Updating active radio fields")
 	document.querySelector(".switch-field").onclick = () => {
 		updateHistory();
-		ftch(`https://api.pixl8.dev/google?q=${escape(inp.value)}`)
+		ftch(`https://apis.explosionscratc.repl.co/google?q=${escape(inp.value)}`)
 	}
 	var cache = JSON.parse(localStorage.getItem("cache")) || {};
 	var wolframCache = JSON.parse(localStorage.getItem("wolfram_cache")) || {};
@@ -59,7 +59,7 @@ function run() {
 	inp.value = (new URLSearchParams(window.location.search)).get("q") || localStorage.getItem("input") || "";
 	if (inp.value === (new URLSearchParams(window.location.search)).get("q")) {
 		console.log("Auto searching due to query.")
-		ftch(`https://api.pixl8.dev/google?q=${escape(inp.value)}`)
+		ftch(`https://apis.explosionscratc.repl.co/google?q=${escape(inp.value)}`)
 	}
 	if ((new URLSearchParams(window.location.search)).get("darkMode") == 1) {
 		console.log("Transitioning to dark mode")
@@ -95,13 +95,13 @@ function run() {
 	window.onpopstate = (e) => {
 		console.log("Fetching due to popState.")
 		inp.value = (new URLSearchParams(window.location.search)).get("q");
-		ftch(`https://api.pixl8.dev/google?q=${escape(inp.value)}`)
+		ftch(`https://apis.explosionscratc.repl.co/google?q=${escape(inp.value)}`)
 	}
 	inp.addEventListener("keyup", (e) => {
 		if (key(e) && e.key !== "Enter") return;
 		if ((e.key === "Enter" && e.shiftKey)) {
 			console.log("Shift + enter was pressed, fetching first search result to redirect to...")
-			_$.getHTML(`https://cors.pixl8.dev/www.google.com/search?q=${escape(inp.value.replace(/^!/, ""))}&btnI=Im+Feeling+Lucky`, () => {}).then(html => {
+			_$.getHTML(`https://cors.explosionscratc.repl.co/www.google.com/search?q=${escape(inp.value.replace(/^!/, ""))}&btnI=Im+Feeling+Lucky`, () => {}).then(html => {
 				console.log("Opening new tab with 1st search result for " + inp.value)
 				window.open(html.querySelector("a").href, "_blank")
 			});
@@ -109,7 +109,7 @@ function run() {
 		}
 		if (e.key === "Enter") {
 			console.log('Fetching due to enter key.')
-			ftch(`https://api.pixl8.dev/google?q=${escape(inp.value)}`);
+			ftch(`https://apis.explosionscratc.repl.co/google?q=${escape(inp.value)}`);
 		}
 		localStorage.setItem("input", inp.value)
 		let html = `<i><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path d="M955 768q-20 34-58 44.5t-72.5-9.5t-45-58.5T789 672q61-106 68-226.5T817.5 216T680 29q47 16 88 40q90 52 152 134.5t87 176t12.5 196T955 768zM768 955q-90 52-192.5 64.5t-196-12.5t-176-87T69 768q-20-34-10-72.5t44.5-58.5t73-9.5T235 672q46 80 116 138t151 86.5t170.5 31T846 899q-37 33-78 56zM512 192q-123 0-230.5 54.5T103 395.5T9 608q-9-49-9-96q0-104 40.5-199t109-163.5T313 40.5T512 0q40 0 68 28t28 68t-28 68t-68 28z" fill="#626262"/></svg> Loading results</i>`
@@ -149,7 +149,7 @@ function run() {
 			if (mode() == "images") {
 				console.log("Images mode.")
 				width = 0;
-				if (cache[`https://api.pixl8.dev/image-search?q=${escape(inp.value)}`.toLowerCase()]) {
+				if (cache[`https://apis.explosionscratc.repl.co/image-search?q=${escape(inp.value)}`.toLowerCase()]) {
 					out.innerHTML = cache[`https://apis.explosionscratc.repl.co/image-search?q=${escape(inp.value)}`.toLowerCase()].map(i => {
 						let color = _$.blendColors("#ffa126", "#f5587f", _$.random(0, 100));
 						let placeholder = `src="https://via.placeholder.com/${Math.ceil(i.width / 10)}x${Math.ceil(i.height / 10)}/${color.replace("#", "")}/${_$.lightOrDark(color).lightOrDark === "light" ? "000000" : "FFFFFF"}/?text=%20"`;
@@ -161,8 +161,8 @@ function run() {
 				let widthInt = setInterval(() => {
 					width += (100 - width) / (Math.random() * 3 + 30);
 				}, 500)
-				fetch(`https://api.pixl8.dev/image-search?q=${escape(inp.value)}`).then(res => res.json()).then(json => {
-					cache[`https://api.pixl8.dev/image-search?q=${escape(inp.value)}`.toLowerCase()] = json;
+				fetch(`https://apis.explosionscratc.repl.co/image-search?q=${escape(inp.value)}`).then(res => res.json()).then(json => {
+					cache[`https://apis.explosionscratc.repl.co/image-search?q=${escape(inp.value)}`.toLowerCase()] = json;
 					out.innerHTML = json.map(i => {
 						return `<img class="lazy" data-gallery="gallery1" onclick="updateImg(this)" id="img" data-src="${i.url}">`
 					}).join("\n");
@@ -177,7 +177,7 @@ function run() {
 					width += (100 - width) / (Math.random() * 3 + 30);
 				}, 500)
 				console.log("Fetching news.");
-				let newsUrl = `https://api.pixl8.dev/news-search?q=${escape(inp.value.trim())}`.toLowerCase();
+				let newsUrl = `https://apis.explosionscratc.repl.co/news-search?q=${escape(inp.value.trim())}`.toLowerCase();
 				if (newsCache[newsUrl]) {
 					out.innerHTML = newsCache[newsUrl].map((i) => {
 						return `<li class="news"><h3><img src="https://www.google.com/s2/favicons?domain=${(new URL(i.web_url).hostname)}" id="icon">${i.abstract || "<i>No title</i>"}</h3><a id="url" href="${_$.escapeHTML(i.web_url)}">${_$.escapeHTML(new URL(i.web_url).hostname)}</a><br><br><span id="text">${_$.escapeHTML(i.lead_paragraph)}</span></li>`;
@@ -202,7 +202,7 @@ function run() {
 				width += (100 - width) / (Math.random() * 3 + 30);
 			}, 500)
 			out.innerHTML = ""
-			let wolframUrl = `https://api.pixl8.dev/quick-answer?q=${escape(inp.value.trim().toLowerCase())}`;
+			let wolframUrl = `https://apis.explosionscratc.repl.co/quick-answer?q=${escape(inp.value.trim().toLowerCase())}`;
 			localStorage.setItem("wolfram_cache", JSON.stringify(wolframCache))
 			if (!wolframCache[wolframUrl]) {
 				console.info(`Fetching quick answer from wolfram`)
@@ -220,12 +220,12 @@ function run() {
 				}
 			}
 			if (inp.value.toLowerCase().startsWith("define ")) {
-				if (!cache[`https://api.pixl8.dev/dictionary?q=${escape(input.value.replace("define ", "").trim())}`.toLowerCase()]) {
-					fetch(`https://api.pixl8.dev/dictionary?q=${escape(input.value.replace("define ", "").trim())}`).then(res => res.json()).then(json => {
+				if (!cache[`https://apis.explosionscratc.repl.co/dictionary?q=${escape(input.value.replace("define ", "").trim())}`.toLowerCase()]) {
+					fetch(`https://apis.explosionscratc.repl.co/dictionary?q=${escape(input.value.replace("define ", "").trim())}`).then(res => res.json()).then(json => {
 						out.innerHTML += `<li class="definition"><h3>${_$.escapeHTML(json.word)}</h3><br><span id="def">${_$.escapeHTML(json.pronounciation)} • ${_$.escapeHTML(json.type.toLowerCase().replace(/^./, (i) => i.toUpperCase()))}</span><br><br><span id="text">${_$.escapeHTML(json.meaning)}</span><br><audio src="${json.audio[0].url}" controls><i>Your browser does not support audio!</i></audio>`
 					})
 				} else {
-					let json = cache[`https://api.pixl8.dev/dictionary?q=${escape(input.value.replace("define ", "").trim())}`.toLowerCase()]
+					let json = cache[`https://apis.explosionscratc.repl.co/dictionary?q=${escape(input.value.replace("define ", "").trim())}`.toLowerCase()]
 					out.innerHTML += `<li class="definition"><h3>${_$.escapeHTML(json.word)}</h3><br><span id="def">${_$.escapeHTML(json.pronounciation)} • ${_$.escapeHTML(json.type.toLowerCase().replace(/^./, (i) => i.toUpperCase()))}</span><br><br><span id="text">${_$.escapeHTML(json.meaning)}</span><br><audio src="${json.audio[0].url}" controls><i>Your browser does not support audio!</i></audio>`
 				}
 			}
@@ -322,7 +322,7 @@ function run() {
 						li.querySelector("#info_icon").onmouseup = (e) => {
 							console.log("Fetching info for URL in question.")
 							e.stopPropagation();
-							fetch(`https://api.pixl8.dev/link-preview?q=${escape(li.querySelector("a").href)}`).then(res => res.json()).then(json => {
+							fetch(`https://apis.explosionscratc.repl.co/link-preview?q=${escape(li.querySelector("a").href)}`).then(res => res.json()).then(json => {
 								alert({
 									title: `<img src="https://www.google.com/s2/favicons?domain=${(new URL(li.querySelector("a").href).hostname)}" id="icon">` + _$.escapeHTML(json.title) || "No info",
 									text: (json.images.length > 0 ? `<img src="${json.images[0]}" id="info_image">` : "") + _$.escapeHTML(json.description || li.querySelector("#text").innerText)
@@ -358,10 +358,10 @@ function run() {
 	}
 	inp.onkeyup = _$.debounce((e) => {
 		if (key(e)) return;
-		ftch(`https://api.pixl8.dev/google?q=${escape(inp.value)}`);
+		ftch(`https://apis.explosionscratc.repl.co/google?q=${escape(inp.value)}`);
 	}, 1000)
 	document.querySelector("button").onclick = _$.debounce(() => {
-		ftch(`https://api.pixl8.dev/google?q=${escape(inp.value)}`);
+		ftch(`https://apis.explosionscratc.repl.co/google?q=${escape(inp.value)}`);
 	}, 500)
 	if (!String.linkify) {
 		String.prototype.linkify = function() {
@@ -372,7 +372,7 @@ function run() {
 		};
 	}
 	async function didYouMean(text) {
-		let dym_html = await _$.getHTML(`https://cors.pixl8.dev/google.com/search?q=${escape(text)}`, () => {});
+		let dym_html = await _$.getHTML(`https://cors.explosionscratc.repl.co/google.com/search?q=${escape(text)}`, () => {});
 		let el = dym("Did you mean:") || dym("Showing results for");
 		let dym_mode = dym("Did you mean:") ? "dym" : dym("Showing results for") ? "results_for" : "original"
 		if (!el) {
