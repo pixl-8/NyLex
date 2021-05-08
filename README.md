@@ -7,14 +7,6 @@
 
 # Get the Nylex Extension
 The .crx is available [here](https://nylex.pixl8.dev/nylex.crx)
-
-
-#### or
-[Get Crosspilot](https://crosspilot.io/out/chrome)
-<br>
-[Download NyLex .crx File](https://nylex.pixl8.dev/nylex.crx)
-#### Manually install by clicking the Crosspilot extension and then choosing the .crx file that you downloaded and then press proceed with extension installation.
-
 <br>
 
 # Running NyLex
