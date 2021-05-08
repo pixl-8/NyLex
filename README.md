@@ -6,9 +6,7 @@
 <br>
 
 # Get the Nylex Extension
-[Get Crosspilot](https://crosspilot.io/out/chrome)
-<br>
-[Download with Crosspilot](https://crosspilot.io/install?app_id=inpoelmimmiplkcldmdljiboidfkcfbh&download_url=https://nylex.pixl8.dev/nylex.crx&update_url=https://nylex.pixl8.dev/nylex.crx)
+The .crx is available [here](https://nylex.pixl8.dev/nylex.crx)
 
 
 #### or
